@@ -18,7 +18,7 @@ model_features = model.feature_names_in_
 
 # Configure Gemini API from environment variable
 load_dotenv()  
-GEMINI_KEY = os.getenv("GEMINI_API_KEY", "AIzaSyDpeKymyNapCJmfcz8V-aIDbPn-EL_KXz4")  # Replace if testing
+GEMINI_KEY = os.getenv("GEMINI_API_KEY", "")  # Replace if testing
 genai.configure(api_key=GEMINI_KEY)
 
 generation_config = {
@@ -114,3 +114,4 @@ def predict():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
