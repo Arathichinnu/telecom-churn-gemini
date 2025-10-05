@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Telecom Customer Churn Prediction</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body { background-color: #f8f9fa; }
+    .card { margin-top: 20px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    .card-header { font-weight: bold; font-size: 1.2rem; }
+    .form-section { margin-bottom: 20px; }
+    .result-box { padding: 20px; border-radius: 10px; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h2 class="text-center my-4">Telecom Customer Churn Prediction</h2>
+
+  <div class="card">
+    <div class="card-header bg-primary text-white">Customer Information</div>
+    <div class="card-body">
+      <form action="/" method="POST">
+
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label>Tenure (months)</label>
+            <input type="number" class="form-control" name="query19" value="{{ query19 }}">
+          </div>
+          <div class="form-group col-md-4">
+            <label>Monthly Charges ($)</label>
+            <input type="number" step="0.01" class="form-control" name="query2" value="{{ query2 }}">
+          </div>
+          <div class="form-group col-md-4">
+            <label>Total Charges ($)</label>
+            <input type="number" step="0.01" class="form-control" name="query3" value="{{ query3 }}">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label>Contract</label>
+            <select class="form-control" name="query16">
+              <option {{ "selected" if query16=="Month-to-month" }}>Month-to-month</option>
+              <option {{ "selected" if query16=="One year" }}>One year</option>
+              <option {{ "selected" if query16=="Two year" }}>Two year</option>
+            </select>
+          </div>
+          <div class="form-group col-md-4">
+            <label>Payment Method</label>
+            <select class="form-control" name="query18">
+              <option {{ "selected" if query18=="Electronic check" }}>Electronic check</option>
+              <option {{ "selected" if query18=="Mailed check" }}>Mailed check</option>
+              <option {{ "selected" if query18=="Bank transfer" }}>Bank transfer (automatic)</option>
+              <option {{ "selected" if query18=="Credit card" }}>Credit card (automatic)</option>
+            </select>
+          </div>
+          <div class="form-group col-md-4">
+            <label>Internet Service</label>
+            <select class="form-control" name="query9">
+              <option {{ "selected" if query9=="DSL" }}>DSL</option>
+              <option {{ "selected" if query9=="Fiber optic" }}>Fiber optic</option>
+              <option {{ "selected" if query9=="No" }}>No</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label>Online Security</label><br>
+            <input type="radio" name="query10" value="Yes" {% if query10=="Yes" %}checked{% endif %}> Yes
+            <input type="radio" name="query10" value="No" {% if query10=="No" %}checked{% endif %}> No
+          </div>
+          <div class="form-group col-md-4">
+            <label>Tech Support</label><br>
+            <input type="radio" name="query13" value="Yes" {% if query13=="Yes" %}checked{% endif %}> Yes
+            <input type="radio" name="query13" value="No" {% if query13=="No" %}checked{% endif %}> No
+          </div>
+          <div class="form-group col-md-4">
+            <label>Streaming TV</label><br>
+            <input type="radio" name="query14" value="Yes" {% if query14=="Yes" %}checked{% endif %}> Yes
+            <input type="radio" name="query14" value="No" {% if query14=="No" %}checked{% endif %}> No
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label>Senior Citizen</label><br>
+            <input type="radio" name="query1" value="1" {% if query1=="1" %}checked{% endif %}> Yes
+            <input type="radio" name="query1" value="0" {% if query1=="0" %}checked{% endif %}> No
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary px-4">Predict Churn</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="card mt-4">
+    <div class="card-header bg-secondary text-white">Prediction Results</div>
+    <div class="card-body">
+      <p><strong>{{ output1 }}</strong></p>
+      <p>{{ output2 }}</p>
+      <hr>
+      <h5>Chatbot Suggestion</h5>
+      <p>{{ chat_response }}</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
